@@ -62,11 +62,11 @@ int implement_exec(char *command, char **argv)
 		{
 			if (execve(command, argv, environ) == -1)
 			{
-				perror("fmash");
+				perror(command);
 			}
 			exit(EXIT_FAILURE);
 		} else if (child_pid < 0)
-			perror("fmash");
+			perror(command);
 		else
 			wait(NULL);
 	}

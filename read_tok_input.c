@@ -2,6 +2,7 @@
 
 /**
  * read_tok_input - function to read input from user
+ * @sign: determine if interactive or non_interactive
  * Return: number of characters read
 */
 char **read_tok_input(void)
