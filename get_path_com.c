@@ -38,9 +38,9 @@ char *get_path_com(char *command)
 				path_tok = strtok(NULL, ":");
 			}
 		}
+		free(ppath);
 	if (stat(command, &buf) == 0)
 		return (command);
-	return (NULL);
 	}
 	return (NULL);
 }

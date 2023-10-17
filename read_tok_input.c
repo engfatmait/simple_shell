@@ -1,8 +1,6 @@
 #include "main.h"
-
 /**
  * read_tok_input - function to read input from user
- * @sign: determine if interactive or non_interactive
  * Return: number of characters read
 */
 char **read_tok_input(void)
@@ -12,7 +10,7 @@ char **read_tok_input(void)
 	ssize_t num_char;
 	char *cptr, *token;
 	unsigned int num_tok = 0, j = 0;
-	char delim[2] = " \n";
+	char delim[2] = " \t\n";
 	char **ptr_tok;
 
 	num_char = getline(&ptr, &size, stdin);
@@ -21,7 +19,7 @@ char **read_tok_input(void)
 		free(ptr);
 		exit(EXIT_SUCCESS);
 	}
-	cptr = malloc(sizeof(char) * num_char);
+	cptr = malloc(sizeof(char) * (num_char + 1));
 	_strcpy(cptr, ptr);
 	token = strtok(ptr, delim);
 	while (token != NULL)
@@ -29,7 +27,7 @@ char **read_tok_input(void)
 		num_tok++;
 		token = strtok(NULL, delim);
 	}
-	ptr_tok = malloc(sizeof(char *) * num_tok);
+	ptr_tok = malloc(sizeof(char *) * (num_tok + 1));
 	if (ptr_tok == NULL)
 	{
 		print_str("allocation failure");
@@ -38,7 +36,7 @@ char **read_tok_input(void)
 	token = strtok(cptr, delim);
 	for (j = 0; j < num_tok; j++)
 	{
-		ptr_tok[j] = malloc(sizeof(char) * (_strlen(token)));
+		ptr_tok[j] = malloc(sizeof(char) * (_strlen(token) + 1));
 		_strcpy(ptr_tok[j], token);
 		token = strtok(NULL, delim);
 	}

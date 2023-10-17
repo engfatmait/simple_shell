@@ -19,4 +19,5 @@ void _strcat(char *dest, char *src)
 		count1++;
 		count++;
 	}
+	dest[count] = '\0';
 }

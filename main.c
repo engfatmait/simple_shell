@@ -13,15 +13,15 @@ int main(int argc, char **argv)
 	int i, k;
 
 	if (argc == 2)
-                {
-                        k = open(argv[1], O_RDONLY);
-                        if (k == -1)
-                        {
-                                perror(argv[1]);
-                                exit(1);
-                        }
-                }
-	while(1)
+	{
+		k = open(argv[1], O_RDONLY);
+		if (k == -1)
+		{
+			perror(argv[1]);
+			exit(1);
+		}
+	}
+	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			print_str(prompt);
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 		implement_exec(gpath, argv);
 		for (i = 0; argv[i] != NULL; i++)
 			free(argv[i]);
-		free(gpath);
+		free(argv);
 	}
 	return (1);
 }
