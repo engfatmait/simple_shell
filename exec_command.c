@@ -14,7 +14,13 @@ void f_exit(void)
 */
 void f_env(void)
 {
+	int c = 0;
 
+	while (environ[c])
+	{
+		print_str(environ[c]);
+		print_str("\n");
+	}
 }
 
 /**
@@ -23,34 +29,21 @@ void f_env(void)
  * Return: pointer to char
 */
 
-void exec_command(char **argv)
+int exec_command(char **argv)
 {
-	alias alias_h[] = {
-		{"ls", "ls - color=auto"},
-		{"ll", "ls -alf"},
-		{"la", "ls -A"},
-		{NULL, NULL},
-	};
-	int i = 0;
-	int j = 0;
 	builtin built_h[] = {
 		{"exit", &f_exit},
-		{"env", &exe_env},
+		{"env", &f_env},
 		{NULL, NULL},
 	};
-
-	while (alias_h[i].alias_name != NULL)
-	{
-		if (_strcmp(argv[0], alias_h[i].alias_name) == 0)
-			implement_exec(alias_h[i].real_name, argv);
-		i++;
-	}
-	while (built_h[j].name != NULL)
-	{
-		if (_strcmp(argv[0], built_h[j].name) == 0)
-			f_exit(EXIT_SUCCESS);
-		j++;
-	}
+		if (_strcmp(argv[0], built_h[0].name) == 0)
+			f_exit();
+		else if (_strcmp(argv[0], built_h[1].name) == 0)
+		{
+			f_env();
+			return(1);
+		}
+		return(0);
 }
 /**
  * implement_exec - function to execute command

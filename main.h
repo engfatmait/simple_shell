@@ -13,18 +13,6 @@
 extern char **environ;
 
 /**
- * struct aliases - struct contains the command and its alias
- * @alias_name: name of alias
- * @real_name: its real name
-*/
-
-typedef struct aliases
-{
-	char *alias_name;
-	char *real_name;
-} alias;
-
-/**
  * struct my_builtins - contains the command and its function
  * @name: command name
  * @fun: pointer to fun
@@ -33,7 +21,7 @@ typedef struct aliases
 typedef struct my_builtins
 {
 	char *name;
-	void (*fun)(char *args);
+	void (*fun)(void);
 } builtin;
 
 
@@ -44,7 +32,7 @@ unsigned int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 void f_exit(void);
 void f_env(void);
-void exec_command(char **argv);
+int exec_command(char **argv);
 int implement_exec(char *command, char **argv);
 int env_com(char *name, char *nenv);
 char *_getenviron(char *name);

@@ -10,7 +10,7 @@ char **read_tok_input(void)
 	ssize_t num_char;
 	char *cptr, *token;
 	unsigned int num_tok = 0, j = 0;
-	char delim[2] = " \t\n";
+	char delim[3] = " \t\n";
 	char **ptr_tok;
 
 	num_char = getline(&ptr, &size, stdin);
