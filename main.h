@@ -21,7 +21,7 @@ extern char **environ;
 typedef struct my_builtins
 {
 	char *name;
-	void (*fun)(void);
+	void (*fun)(char **args);
 } builtin;
 
 
@@ -30,8 +30,8 @@ char **read_tok_input(void);
 char *_strcpy(char *dest, char *src);
 unsigned int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
-void f_exit(void);
-void f_env(void);
+void f_exit(char **args);
+void f_env(char **args);
 int exec_command(char **argv);
 int implement_exec(char *command, char **argv);
 int env_com(char *name, char *nenv);

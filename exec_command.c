@@ -1,20 +1,27 @@
 #include "main.h"
 /**
  * f_exit - fun to exit
+ * @args: array of pointers to char
  * Return: nothing
 */
-void f_exit(void)
+void f_exit(char **args)
 {
-	exit(0);
+	int i;
+
+	for (i = 0; args[i] != NULL; i++)
+		free(args[i]);
+	free(args);
+	exit(EXIT_SUCCESS);
 }
 
 /**
  * f_env - sun to execute env
+ * @args: array of pointers to char
  * Return: nothing;
 */
-void f_env(void)
+void f_env(char **args)
 {
-	int c = 0;
+	int j, c = 0;
 
 	while (environ[c])
 	{
@@ -22,6 +29,9 @@ void f_env(void)
 		print_str("\n");
 		c++;
 	}
+	for (j = 0; args[j] != NULL; j++)
+		free(args[j]);
+	free(args);
 }
 
 /**
@@ -38,10 +48,10 @@ int exec_command(char **argv)
 		{NULL, NULL},
 	};
 		if (_strcmp(argv[0], built_h[0].name) == 0)
-			f_exit();
+			f_exit(argv);
 		else if (_strcmp(argv[0], built_h[1].name) == 0)
 		{
-			f_env();
+			f_env(argv);
 			return (1);
 		}
 		return (0);
