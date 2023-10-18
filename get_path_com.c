@@ -15,7 +15,7 @@ char *get_path_com(char *command)
 
 	if (path)
 	{
-		ppath = strdup(path);
+		ppath = _strdup(path);
 		com_len = _strlen(command);
 		path_tok = strtok(ppath, ":");
 		while (path_tok != NULL)

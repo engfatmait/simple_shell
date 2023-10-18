@@ -38,6 +38,7 @@ int env_com(char *name, char *nenv);
 char *_getenviron(char *name);
 char *get_path_com(char *command);
 void _strcat(char *dest, char *src);
+char *_strdup(char *str);
 
 
 

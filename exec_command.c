@@ -20,6 +20,7 @@ void f_env(void)
 	{
 		print_str(environ[c]);
 		print_str("\n");
+		c++;
 	}
 }
 
@@ -41,9 +42,9 @@ int exec_command(char **argv)
 		else if (_strcmp(argv[0], built_h[1].name) == 0)
 		{
 			f_env();
-			return(1);
+			return (1);
 		}
-		return(0);
+		return (0);
 }
 /**
  * implement_exec - function to execute command
