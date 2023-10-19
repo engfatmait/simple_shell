@@ -50,7 +50,6 @@ int exec_command(char **argv, int status)
 		{
 			f_env(argv);
 			return (1);
-			
 		}
 		return (0);
 }
