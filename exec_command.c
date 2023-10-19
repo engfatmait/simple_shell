@@ -2,16 +2,17 @@
 /**
  * f_exit - fun to exit
  * @args: array of pointers to char
+ * @status: status of program
  * Return: nothing
 */
-void f_exit(char **args)
+void f_exit(char **args, int status)
 {
 	int i;
 
 	for (i = 0; args[i] != NULL; i++)
 		free(args[i]);
 	free(args);
-	exit(EXIT_SUCCESS);
+	exit(status);
 }
 
 /**
@@ -37,22 +38,19 @@ void f_env(char **args)
 /**
  * exec_command - function that execute the command received
  * @argv: array of pointers
+ * @status: an integer
  * Return: pointer to char
 */
 
-int exec_command(char **argv)
+int exec_command(char **argv, int status)
 {
-	builtin built_h[] = {
-		{"exit", &f_exit},
-		{"env", &f_env},
-		{NULL, NULL},
-	};
-		if (_strcmp(argv[0], built_h[0].name) == 0)
-			f_exit(argv);
-		else if (_strcmp(argv[0], built_h[1].name) == 0)
+		if (_strcmp(argv[0], "exit") == 0)
+			f_exit(argv, status);
+		else if (_strcmp(argv[0], "env") == 0)
 		{
 			f_env(argv);
 			return (1);
+			
 		}
 		return (0);
 }

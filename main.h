@@ -12,27 +12,14 @@
 /*points to an array of strings called "environment"*/
 extern char **environ;
 
-/**
- * struct my_builtins - contains the command and its function
- * @name: command name
- * @fun: pointer to fun
-*/
-
-typedef struct my_builtins
-{
-	char *name;
-	void (*fun)(char **args);
-} builtin;
-
-
 int print_str(char *str);
 char **read_tok_input(void);
 char *_strcpy(char *dest, char *src);
 unsigned int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
-void f_exit(char **args);
+void f_exit(char **args, int status);
 void f_env(char **args);
-int exec_command(char **argv);
+int exec_command(char **argv, int status);
 int implement_exec(char *command, char **argv);
 int env_com(char *name, char *nenv);
 char *_getenviron(char *name);

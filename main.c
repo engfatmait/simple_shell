@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
 	char *prompt = "fmash:~$ ";
 	char *gpath;
-	int i, k, j;
+	int i, k, j, status = 0;
 
 	if (argc == 2)
 	{
@@ -26,11 +26,11 @@ int main(int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			print_str(prompt);
 		argv = read_tok_input();
-		j = exec_command(argv);
+		j = exec_command(argv, status);
 		if (j == 1)
 			continue;
 		gpath = get_path_com(argv[0]);
-		implement_exec(gpath, argv);
+		status = implement_exec(gpath, argv);
 		for (i = 0; argv[i] != NULL; i++)
 			free(argv[i]);
 		free(argv);
