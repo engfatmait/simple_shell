@@ -81,5 +81,5 @@ int implement_exec(char *command, char **argv)
 		else
 			wait(NULL);
 	}
-	return (1);
+	return (2);
 }
